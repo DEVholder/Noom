@@ -30,7 +30,7 @@ function handleNicknameSubmit(event){
     const input = room.querySelector("#name input");
     const value = input.value;
     socket.emit("nickname", value);
-    input.value = "";
+    // input.value = "";
 }
 
 function showRoom(){
@@ -54,12 +54,12 @@ function handleRoomSubmit(event){
 
 form.addEventListener("submit", handleRoomSubmit);
 
-socket.on("welcome", ()=>{
-    addMessage("someone joined!");
+socket.on("welcome", (userNickname)=>{
+    addMessage(`${userNickname} arrived!`);
 })
 
-socket.on("bye", () => {
-    addMessage("someone left...");
+socket.on("bye", (userNickname) => {
+    addMessage(`${userNickname} left ㅠㅠ`);
 })
 
 socket.on("new_message", (msg) =>{
